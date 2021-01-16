@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add new user</title>
+  </head>
+<body>
+    <center>
+        <h3>Sign up, my friend</h3>
+        <form action="{{ url_for('update_users') }}" method="post">
+            <input type="text" name="new_user" placeholder="username"></input><br>
+            <input type="password" name="new_pass" placeholder="password"></input><br>
+            <input type="submit"/>
+        </form>
+        <h4> Make sure your password contains at least 8 symbols, including uppercase and lowercase letters, as well as digits.</h4>
+    </center>
+</body>
+</html>
+
+{{ content|safe }}

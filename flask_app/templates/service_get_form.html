@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Get password</title>
+  </head>
+<body>
+    <center>
+        <h3>Fill the form to get your password for service</h3>
+        <form action="{{ url_for('get_service_password') }}" method="post">
+            <input type="text" name="service" placeholder="service"></input><br>
+            <input type="password" name="master_get" placeholder="masterpassword"></input><br>
+            <input type="submit" value = "Get password"/>
+        </form>
+    </center>
+</body>
+</html>
+
+{{ content|safe }}

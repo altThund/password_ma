@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Start Page</title>
+  </head>
+  <body>
+    <center>
+      <h3>Log in, my friend</h3>
+      <form action="{{ url_for('login') }}" method="post">
+          <input type="text" name="username" placeholder="username"></input><br>
+          <input type="password" name="password" placeholder="password"></input><br>
+          <input type="submit"/>
+      </form>
+      <h3>New here? Sign up then.</h3>
+      <form action="{{ url_for('add_user') }}" methods=['POST', 'GET']>
+          <input type="submit" value="Create account"/>
+      </form>
+      </center>
+  </body>
+</html>

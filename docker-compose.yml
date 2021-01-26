@@ -8,12 +8,13 @@ services:
             - flask
         volumes:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
-            - ./selfsigned.crt:/etc/ssl/certs/nginx-selfsigned.crt
-            - ./selfsigned.key:/etc/ssl/private/nginx-selfsigned.key
+            - ./selfsigned.crt:/etc/nginx/ssl/certs/selfsigned.crt
+            - ./selfsigned_wpem.key:/etc/nginx/ssl/private/selfsigned_wpem.key
         networks:
             - my-network
         ports:
             - 80:80
+            - 443:443
     flask:
         build:
             context: ./

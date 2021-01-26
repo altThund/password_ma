@@ -9,7 +9,7 @@ WORKDIR /project
 
 COPY flask_app/ /project
 
-RUN pip install flask flask_sqlalchemy pymysql
+RUN pip install flask flask_sqlalchemy pymysql flask-login pbkdf2 pycryptodome flask-wtf
 
 RUN pip freeze > requirements.txt
 

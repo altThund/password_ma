@@ -7,6 +7,7 @@
     <center>
         <h3>Fill the form to add your password for service</h3>
         <form action="{{ url_for('update_account') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             <input type="text" name="new_service" placeholder="service"></input><br>
             <input type="password" name="new_password" placeholder="password"></input><br>
             <input type="password" name="masterpassword" placeholder="masterpassword"></input><br>

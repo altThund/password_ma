@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Type an active e-mail</title>
+  </head>
+<body>
+    {{ content|safe }}
+    <center>
+        <h3>Type your e-mail adress</h3>
+        <form action="{{ url_for('pass_change') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <input type="text" name="active_email" placeholder="e-mail"></input><br>
+            <input type="submit" value = "Receive message"/>
+        </form>
+    </center>
+</body>
+</html>

@@ -7,14 +7,22 @@
     <center>
       <h3>Log in, my friend</h3>
       <form action="{{ url_for('login') }}" method="post">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
           <input type="text" name="username" placeholder="username"></input><br>
           <input type="password" name="password" placeholder="password"></input><br>
           <input type="submit"/>
       </form>
+      <h4>Forgot your password? No worries.</h4>
+      <form action="{{ url_for('raise_change_form') }}" methods=['POST', 'GET']>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+          <input type="submit" value="Change my password"/>
+      </form>
       <h3>New here? Sign up then.</h3>
       <form action="{{ url_for('add_user') }}" methods=['POST', 'GET']>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
           <input type="submit" value="Create account"/>
       </form>
+      <h4>You have 5 attemps to log in. In case you don't manage, the system will be automativally frozen for a short time. I'm sorry :(</h4>
       </center>
   </body>
 </html>

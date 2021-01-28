@@ -3,14 +3,13 @@ from dbalchemy import db, app, User, Account, PswReset, login_manager, csrf, tal
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import hashlib
-import time, os, uuid
+import time, os, uuid, sys
 import base64, pbkdf2
 from Crypto import Random
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 from flask_wtf.csrf import CSRFError, CSRFProtect
 
-em = ""
 
 @app.route('/')
 def main():
@@ -121,20 +120,19 @@ def pass_change():
         db.session.add(reset)
     db.session.commit()
     session['my_key'] = key
-    print("Originally, I would send a message to adres " + email + " with content:")
-    print("In order to change your password, follow the 'http://localhost:5000/show_changepass_form' link")
+    print("Originally, I would send a message to adres " + email + " with content:", file=sys.stderr)
+    print("In order to change your password, follow the 'https://localhost:443/show_changepass_form' link", file=sys.stderr)
     return render_template("email_form.html")
 
 
 @app.route('/show_changepass_form', methods=['POST', 'GET'])
 def show_changepass_form():
-    key = session.get('my_key', None)
-    return render_template("change_password_form.html", key = key)
+    return render_template("change_password_form.html")
 
 
 @app.route('/update_password', methods=['POST', 'GET'])
 def update_password():
-    key = request.form.get("key")
+    key = session.get('my_key', None)
     reset = PswReset.query.filter_by(reset_key = str(key)).first()
     if reset.activated == True:
         return render_template("email_form.html", content = f"Apparently, you've already used that reset URL. Please, make a new request here.")
